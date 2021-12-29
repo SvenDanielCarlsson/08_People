@@ -1,0 +1,27 @@
+﻿@model _08_People.Models.Entity.Person
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Details</h3>
+
+<br />
+<dl>
+    <dt>Id</dt>
+    <dd>@Model.Id</dd>
+
+    <dt>First Name</dt>
+    <dd>@Model.FirstName</dd>
+
+    <dt>Last Name</dt>
+    <dd>@Model.LastName</dd>
+
+    <dt>Phonenumber</dt>
+    <dd>@Model.PhoneNumber</dd>
+
+    <dt>Living in</dt>
+    <dd>@Model.InCity</dd>
+</dl>
+<form method="post" asp-action="Delete" asp-route-id="@Model.Id"}>
+    <input type="submit" class="btn btn-danger" value="Delete Person" />
+</form>
