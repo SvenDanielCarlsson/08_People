@@ -41,7 +41,7 @@ namespace _08_People.Models.Repos
             //}
             //else
             //{
-            //    People.Update(person);
+            //    //update people (person)
             //}
             throw new NotImplementedException();
         }
