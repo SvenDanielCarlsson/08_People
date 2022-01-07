@@ -9,6 +9,10 @@ namespace _08_People.Models.ViewModels
 {
     public class CreatePersonViewModel
     {
+        public int Id { get; set; }
+
+
+
         [Required]
         [StringLength(50, MinimumLength = 2)]
         [DisplayName("First Name")]

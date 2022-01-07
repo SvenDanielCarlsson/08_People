@@ -46,7 +46,7 @@ namespace _08_People.Controllers
                 //if throw new argumentexception needs to be added
             }
             Console.WriteLine("Create Controller ModelState INvalid");
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Create));
         }
 
 
@@ -62,6 +62,20 @@ namespace _08_People.Controllers
 
         public ActionResult Edit(int id)    // Not implemented
         {
+            //Person person = _ipeopleService.FindById(id);
+            //if (person == null) { return RedirectToAction(nameof(Index)); }
+
+            //CreatePersonViewModel editPerson = new CreatePersonViewModel()
+            //{
+            //    //Id = person.Id,   //Add and set Id in CreatePersonViewModel??
+            //    FirstName = person.FirstName,
+            //    LastName = person.LastName,
+            //    PhoneNumber = person.PhoneNumber,
+            //    InCity = person.InCity
+            //};
+
+            //ViewBag.Id = id;
+            //return View(editPerson);
             return View();
         }
 

@@ -1,0 +1,18 @@
+﻿@foreach (var Person in Model.Persons)
+{
+    @*<div class="container">*@
+        <div class="row" style="background-color:aliceblue">
+
+            <div class="col align-self-center">@Person.FirstName</div>
+            <div class="col align-self-center">@Person.LastName</div>
+            <div class="col align-self-center">@Person.InCity</div>
+            <div class="col align-self-center">
+                <a asp-controller="People" asp-action="Details" asp-route-id="@Person.Id">
+                    <input type="submit" class="btn btn-info" value="Details" />
+                </a>
+            </div>
+
+        </div>
+    @*</div>*@
+}
+

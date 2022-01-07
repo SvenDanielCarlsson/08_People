@@ -35,6 +35,14 @@ namespace _08_People.Models.Repos
 
         public bool Update(Person person)
         {
+            //if (person == null)
+            //{
+            //    return false;
+            //}
+            //else
+            //{
+            //    People.Update(person);
+            //}
             throw new NotImplementedException();
         }
 

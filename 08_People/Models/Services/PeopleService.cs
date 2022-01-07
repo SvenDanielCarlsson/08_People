@@ -78,9 +78,23 @@ namespace _08_People.Models.Services
             }
         }
 
-        public bool Edit(int id, CreatePersonViewModel person)
+        public bool Edit(int id, CreatePersonViewModel alterPerson)
         {
-            throw new NotImplementedException();
+            //Person person = _peopleRepo.Read(id);
+            Person person = FindById(id);
+
+            if (person != null)
+            {
+                person.Id = id;     //                  <------------    Really neccessary?
+                person.FirstName = alterPerson.FirstName;
+                person.LastName = alterPerson.LastName;
+                person.PhoneNumber = alterPerson.PhoneNumber;
+                person.InCity = alterPerson.InCity;
+
+                _peopleRepo.Update(person);
+                return true;
+            }
+            return false;
         }
 
         public bool Remove(int id)
