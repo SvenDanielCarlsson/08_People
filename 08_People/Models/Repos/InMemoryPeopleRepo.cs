@@ -9,15 +9,16 @@ namespace _08_People.Models.Repos
     public class InMemoryPeopleRepo : IPeopleRepo
     {
         private static List<Person> people = new List<Person>();
-        public static List<Person> People { get { return people; } set { people = value; } }
+        private static List<Person> People { get { return people; } set { people = value; } }
 
         private static int idCounter = 1;
-        public static int IdCounter { get { return idCounter++; } }
+        private static int IdCounter { get { return idCounter++; } }
 
 
 
         public Person Create(Person person)
         {
+            person.Id = IdCounter;
             People.Add(person);
 
             return person;
@@ -41,7 +42,7 @@ namespace _08_People.Models.Repos
             //}
             //else
             //{
-            //    //update people (person)
+            //    //people.Update(person) is wrong
             //}
             throw new NotImplementedException();
         }
@@ -54,8 +55,7 @@ namespace _08_People.Models.Repos
             }
             else
             {
-                People.Remove(person);  // Add a check for if remove was successfull?
-                return true;
+                return People.Remove(person);  // Add a check for if remove was successfull?
             }
         }
     }

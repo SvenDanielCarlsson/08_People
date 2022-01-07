@@ -20,24 +20,21 @@ namespace _08_People.Models.Services
 
         public Person Add(CreatePersonViewModel newPerson)
         {
-            // if any data is empty, should throw argumentexception
-            Person person = new Person()
-            {
-                Id = InMemoryPeopleRepo.IdCounter,
-                FirstName = newPerson.FirstName,
-                LastName = newPerson.LastName,
-                PhoneNumber = newPerson.PhoneNumber,
-                InCity = newPerson.InCity
-            };
-
-            if(person == null)
+            if (newPerson == null)
             {
                 return null;
             }
             else
             {
-                person = _peopleRepo.Create(person);
-                return person;
+                Person person = new Person()
+                {
+                    FirstName = newPerson.FirstName,
+                    LastName = newPerson.LastName,
+                    PhoneNumber = newPerson.PhoneNumber,
+                    InCity = newPerson.InCity
+                };
+
+                return _peopleRepo.Create(person);
             }
         }
 
@@ -80,35 +77,28 @@ namespace _08_People.Models.Services
 
         public bool Edit(int id, CreatePersonViewModel alterPerson)
         {
-            //Person person = _peopleRepo.Read(id);
             Person person = FindById(id);
 
             if (person != null)
             {
-                person.Id = id;     //                  <------------    Really neccessary?
                 person.FirstName = alterPerson.FirstName;
                 person.LastName = alterPerson.LastName;
                 person.PhoneNumber = alterPerson.PhoneNumber;
                 person.InCity = alterPerson.InCity;
 
-                _peopleRepo.Update(person);
-                return true;
+                return _peopleRepo.Update(person);
             }
             return false;
         }
 
         public bool Remove(int id)
         {
-            Person person = FindById(id); // OR _peopleRepo.Read(id);
+            Person person = FindById(id);
             if (person != null)
             {
-                _peopleRepo.Delete(person);
-                return true;
+                return _peopleRepo.Delete(person);
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
 

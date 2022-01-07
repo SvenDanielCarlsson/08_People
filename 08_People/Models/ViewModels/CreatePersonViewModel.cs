@@ -24,7 +24,7 @@ namespace _08_People.Models.ViewModels
         public string LastName { get; set; }
 
         [Required]
-        //[Phone] //Works not that well for me
+        [DataType(DataType.PhoneNumber)]
         [DisplayName("Phonenumber")]
         public int PhoneNumber { get; set; }
 

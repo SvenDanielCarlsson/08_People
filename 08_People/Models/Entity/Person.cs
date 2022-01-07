@@ -21,7 +21,7 @@ namespace _08_People.Models.Entity
         public string LastName { get; set; }
         
         [Required]
-        [Phone] //Works?
+        [DataType(DataType.PhoneNumber)]
         public int PhoneNumber { get; set; }
         
         [Required]

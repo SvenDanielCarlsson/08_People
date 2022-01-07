@@ -45,7 +45,6 @@ namespace _08_People.Controllers
                 return RedirectToAction(nameof(Index));     // Redirection to "Details" would be preferred
                 //if throw new argumentexception needs to be added
             }
-            Console.WriteLine("Create Controller ModelState INvalid");
             return RedirectToAction(nameof(Create));
         }
 

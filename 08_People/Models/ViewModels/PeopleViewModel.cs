@@ -20,7 +20,7 @@ namespace _08_People.Models.ViewModels
         public string LastName { get; set; }
 
         [Required]
-        [Phone]
+        [DataType(DataType.PhoneNumber)]
         public int PhoneNumber { get; set; }
 
         [Required]
