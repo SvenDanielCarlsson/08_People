@@ -12,11 +12,11 @@ namespace _08_People.Models.Services
     {
         private readonly IPeopleRepo _peopleRepo;
 
-
         public PeopleService(IPeopleRepo peopleRepo)
         {
             _peopleRepo = peopleRepo;
         }
+
 
         public Person Add(CreatePersonViewModel newPerson)
         {
@@ -31,7 +31,7 @@ namespace _08_People.Models.Services
                     FirstName = newPerson.FirstName,
                     LastName = newPerson.LastName,
                     PhoneNumber = newPerson.PhoneNumber,
-                    InCity = newPerson.InCity
+                    CityId = newPerson.CityId
                 };
 
                 return _peopleRepo.Create(person);
@@ -59,7 +59,7 @@ namespace _08_People.Models.Services
                 List<Person> result = All().Where(x => 
                                             x.FirstName.ToLower().Contains(search.ToLower()) ||
                                             x.LastName.ToLower().Contains(search.ToLower()) ||
-                                            x.InCity.ToLower().Contains(search.ToLower())
+                                            x.City.CityName.ToLower().Contains(search.ToLower())
                                             ).ToList();
 
                 if (result.Count < 1)
@@ -71,20 +71,20 @@ namespace _08_People.Models.Services
                 {
                 return (List<Person>)result;
                 }
-
             }
         }
 
-        public bool Edit(int id, CreatePersonViewModel alterPerson)
+        public bool Edit(int id, CreatePersonViewModel ePerson)
         {
             Person person = FindById(id);
 
             if (person != null)
             {
-                person.FirstName = alterPerson.FirstName;
-                person.LastName = alterPerson.LastName;
-                person.PhoneNumber = alterPerson.PhoneNumber;
-                person.InCity = alterPerson.InCity;
+                person.FirstName = ePerson.FirstName;
+                person.LastName = ePerson.LastName;
+                person.PhoneNumber = ePerson.PhoneNumber;
+                person.CityId = ePerson.CityId;
+                //person.City = ePerson.City;               // wont work? or safer?
 
                 return _peopleRepo.Update(person);
             }
@@ -94,6 +94,7 @@ namespace _08_People.Models.Services
         public bool Remove(int id)
         {
             Person person = FindById(id);
+
             if (person != null)
             {
                 return _peopleRepo.Delete(person);

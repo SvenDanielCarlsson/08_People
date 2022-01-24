@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using _08_People.Models.Repos;
 using _08_People.Models.Services;
+using _08_People.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace _08_People
 {
@@ -20,19 +22,27 @@ namespace _08_People
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        //public IConfiguration Configuration { get; }    //Change to private readonly?
+        private readonly IConfiguration Configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();
+            services.AddDbContext<PeopleDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            //services.AddScoped<IPeopleRepo, InMemoryPeopleRepo>();    //Using in memory storage
+            services.AddScoped<IPeopleRepo, DatabasePeopleRepo>();      //Using the database,   IoC & DI (Dependecy Injection)
             services.AddScoped<IPeopleService, PeopleService>();
+            services.AddScoped<ICitiesRepo, DatabaseCitiesRepo>();
+            services.AddScoped<ICitiesService, CitiesService>();
+            services.AddScoped<ICountriesRepo, DatabaseCountriesRepo>();
+            services.AddScoped<ICountriesService, CountriesService>();
 
-            //services.AddMvc();
-            //services.AddRazorPages();
-
-            //services.AddScoped<iPeopleRepo>
+            services.AddControllersWithViews();
+            services.AddMvc();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

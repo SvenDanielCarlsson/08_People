@@ -73,14 +73,21 @@ body {
 
 /*      - - Fake Table - -       */
 .divHover:hover {
-    background-color:aquamarine;
+    /*background-color:aquamarine !important;*/
+    background-color:azure !important;
+    color: blueviolet;
 }
 .divChecker:nth-child(even) {
-    background-color:antiquewhite;
+    /*background-color:antiquewhite;*/
+    /*background-color:chartreuse;*/
+    background-color:lightcyan ;
 }
 
-#row {
+.tableRow {
     display: table-row;
+}
+.tableBgColor{
+    background-color:aliceblue;
 }
 
 #left, #right, #middle {

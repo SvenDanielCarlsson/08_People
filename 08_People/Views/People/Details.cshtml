@@ -20,7 +20,7 @@
     <dd>@Model.PhoneNumber</dd>
 
     <dt>Living in</dt>
-    <dd>@Model.InCity</dd>
+    <dd>@Model.City.CityName</dd>
 </dl>
 <form method="post" asp-action="Delete" asp-route-id="@Model.Id"}>
     <input type="submit" class="btn btn-danger" value="Delete Person" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _08_People.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,10 +10,6 @@ namespace _08_People.Models.ViewModels
 {
     public class CreatePersonViewModel
     {
-        public int Id { get; set; }
-
-
-
         [Required]
         [StringLength(50, MinimumLength = 2)]
         [DisplayName("First Name")]
@@ -28,9 +25,22 @@ namespace _08_People.Models.ViewModels
         [DisplayName("Phonenumber")]
         public int PhoneNumber { get; set; }
 
+
+
+        //[Required]
+        //[StringLength(50, MinimumLength = 2)]
+        //[DisplayName("Country")]
+        //public Country Country { get; set; }        // Redundant??
+
+        //[Required]
+        //[StringLength(50, MinimumLength = 2)]
+        //[DisplayName("City")]
+
         [Required]
-        [StringLength(50, MinimumLength = 2)]
         [DisplayName("City")]
-        public string InCity { get; set; }
+        public int CityId { get; set; }
+        //public City city { get; set; }
+        public List<City> CityList { get; set; }
+
     }
 }

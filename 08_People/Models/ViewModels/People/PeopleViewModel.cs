@@ -26,10 +26,13 @@ namespace _08_People.Models.ViewModels
         [Required]
         [StringLength(50, MinimumLength = 2)]
         public string InCity { get; set; }
-        
+
+        public Country Country { get; set; }
+        public City City { get; set; }
 
 
         public List<Person> Persons { get; set; }
+        public List<City> CityList { get; set; }    //Reduntant i think
         public PeopleViewModel() {}
         
     }

@@ -13,17 +13,20 @@ namespace _08_People.Controllers
 {
     public class PeopleController : Controller
     {
-        private readonly IPeopleService _ipeopleService;
-
-        public PeopleController(IPeopleService ipeopleService)
+        private readonly IPeopleService _peopleService;
+        private readonly ICitiesService _citiesService;
+        public PeopleController(IPeopleService ipeopleService, ICitiesService citiesService)
         {
-            _ipeopleService = ipeopleService;
+            _peopleService = ipeopleService;
+            _citiesService = citiesService;
         }
+
+
 
         [HttpGet]
         public ActionResult Index(string search)
         {
-            PeopleViewModel people = new PeopleViewModel { Persons = _ipeopleService.Search(search) };
+            PeopleViewModel people = new PeopleViewModel { Persons = _peopleService.Search(search) };
             return View(people);
         }
 
@@ -32,7 +35,9 @@ namespace _08_People.Controllers
         public ActionResult Create()
         {
             CreatePersonViewModel createPerson = new CreatePersonViewModel();
-            return View(createPerson);
+            createPerson.CityList = _citiesService.All();
+            return View();
+            //return View(createPerson);
         }
 
         [HttpPost]
@@ -41,10 +46,11 @@ namespace _08_People.Controllers
         {
             if (ModelState.IsValid)
             {
-                _ipeopleService.Add(person);
+                _peopleService.Add(person);
                 return RedirectToAction(nameof(Index));     // Redirection to "Details" would be preferred
                 //if throw new argumentexception needs to be added
             }
+            person.CityList = _citiesService.All();
             return RedirectToAction(nameof(Create));
         }
 
@@ -52,7 +58,7 @@ namespace _08_People.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            Person person = _ipeopleService.FindById(id);
+            Person person = _peopleService.FindById(id);
             if(person == null) { RedirectToAction(nameof(Index)); }
             //add if (person == null) redirect to index, or indicate in details view that person is gone (in case of deletion)
             return View(person);
@@ -61,7 +67,7 @@ namespace _08_People.Controllers
 
         public ActionResult Edit(int id)    // Not implemented
         {
-            //Person person = _ipeopleService.FindById(id);
+            //Person person = _peopleService.FindById(id);
             //if (person == null) { return RedirectToAction(nameof(Index)); }
 
             //CreatePersonViewModel editPerson = new CreatePersonViewModel()
@@ -103,12 +109,12 @@ namespace _08_People.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            Person person = _ipeopleService.FindById(id);
+            Person person = _peopleService.FindById(id);
             if (person == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            _ipeopleService.Remove(id);
+            _peopleService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
     }
