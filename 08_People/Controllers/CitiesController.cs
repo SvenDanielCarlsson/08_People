@@ -1,4 +1,5 @@
-﻿using _08_People.Models.Services;
+﻿using _08_People.Models.Entity;
+using _08_People.Models.Services;
 using _08_People.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,11 +20,19 @@ namespace _08_People.Controllers
 
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            CitiesViewModel cities = new CitiesViewModel { Cities = _citiesService.All() }; // Change to search?
+            CitiesViewModel cities = new CitiesViewModel { Cities = _citiesService.Search(search) }; // Change to search?
             return View(cities);
         }
+
+        //[HttpGet]
+        //public IActionResult Index(int id)
+        //{
+        //    City city = _citiesService.FindById(id);
+        //    //CitiesViewModel cities = new CitiesViewModel { Cities = _citiesService.Search(search) }; // Change to search?
+        //    return View(cities);
+        //}
 
         [HttpGet]
         public IActionResult Create()

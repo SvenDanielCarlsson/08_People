@@ -10,6 +10,7 @@ namespace _08_People.Models.Repos
     public class DatabaseCitiesRepo : ICitiesRepo
     {
         private readonly PeopleDbContext _peopleDbContext;
+
         public DatabaseCitiesRepo(PeopleDbContext peopleDbContext)
         {
             _peopleDbContext = peopleDbContext;

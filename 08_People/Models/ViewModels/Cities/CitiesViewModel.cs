@@ -11,6 +11,7 @@ namespace _08_People.Models.ViewModels
         public string CityName { get; set; }
 
         public List<City> Cities { get; set; }
+        public Country Country { get; set; }
         public CitiesViewModel() { }
     }
 }

@@ -1,0 +1,73 @@
+﻿@model _08_People.Models.Entity.City
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h3>@Model.Country.CountryName.</h3>
+</div>
+
+
+
+@*Model.Cities.ToList().Count*@
+@if (2 < 1)
+{
+    <br />
+    <p>There are no cities in the list at the moment</p>
+}
+else
+{
+    @*<div class="row">
+        <h3>Cities</h3>
+        <hr />
+        <div class="align-items-end">
+            @using (Html.BeginForm("Index", "Cities", FormMethod.Get))
+            {
+                @Html.TextBox("search")
+                <input type="submit" value="Search" />
+            }
+        </div>
+    </div>*@
+
+    <a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Create">Add City</a>
+
+    <br />
+    <div class="container">
+        <div class="row table-primary" style="border-bottom-style: ridge; font-weight:bolder; font-size:larger">
+            <div class="col">City</div>
+            <div class="col">Num. Of People</div>
+            <div class="col">Country</div>
+            <div class="col">Details</div>
+        </div>
+
+        @foreach (var City in Model.Country.Cities)
+        {
+            <div class="divChecker divHover tableBgColor row">
+
+                <div class="col align-self-center">@City.CityName</div>
+                <div class="col align-self-center">555</div>
+                <div class="col align-self-center">@City.CountryId</div>
+                <div class="col align-self-center">
+                    <a asp-controller="Country" asp-action="Details" asp-route-id="@City.Id">
+                        <input type="submit" class="btn btn-info" value="Details" />
+                    </a>
+                </div>
+
+            </div>
+        }
+    </div>
+}
+
+
+
+
+
+
+
+
+
+
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    <a asp-action="Index">Back to List</a>
+</div>

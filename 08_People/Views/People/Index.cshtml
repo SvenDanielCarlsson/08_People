@@ -8,34 +8,38 @@
 
 @if (Model.Persons.Count < 1)
 {
-<br />
-<p>There are no people in the list at the moment</p>
+    <r />
+    <p>There are no people in the list at the moment</p>
 }
 else
 {
-<div class="row">
+    <h3>People</h3>
+    <hr />
 
-    <h3>List Of People</h3>
+    <div class="container row">
+        <div class="row col">
+            <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="Create">Add Person</a>
+        </div>
 
-    <div class="align-items-end">
-        @using (Html.BeginForm("Index", "People", FormMethod.Get))
+        <div class="align-items-end">
+            @using (Html.BeginForm("Index", "People", FormMethod.Get))
             {
-        @Html.TextBox("search")
-        <input type="submit" value="Search" />
+                @Html.TextBox("search")
+                <input type="submit" value="Search" />
             }
-    </div>
-</div>
-
-
-<br />
-<div class="container">
-    <div class="row table-primary" style="border-bottom-style: ridge; font-weight:bolder; font-size:larger">
-        <div class="col">First Name</div>
-        <div class="col">Last Name</div>
-        <div class="col">Living In</div>
-        <div class="col">Details</div>
+        </div>
     </div>
 
-    <partial name="_PeopleList" />
-</div>
+
+    <br />
+    <div class="container">
+        <div class="row table-primary" style="border-bottom-style: ridge; font-weight:bolder; font-size:larger">
+            <div class="col">First Name</div>
+            <div class="col">Last Name</div>
+            <div class="col">Living In</div>
+            <div class="col">Details</div>
+        </div>
+
+        @*<partial name="_PeopleList" />*@
+    </div>
 }   <!-- End Of else statement -->

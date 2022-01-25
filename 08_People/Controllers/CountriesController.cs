@@ -1,4 +1,5 @@
-﻿using _08_People.Models.Services;
+﻿using _08_People.Models.Entity;
+using _08_People.Models.Services;
 using _08_People.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,9 +20,9 @@ namespace _08_People.Controllers
 
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            CountriesViewModel countries = new CountriesViewModel { Countries = _countriesService.All() };  //Change to search?
+            CountriesViewModel countries = new CountriesViewModel { Countries = _countriesService.Search(search) };  //Change to search?
             return View(countries);
         }
 
@@ -43,6 +44,21 @@ namespace _08_People.Controllers
                 //if throw new argumentexception needs to be added
             }
             return RedirectToAction(nameof(Create));
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            //Country country = _countriesService.FindById(id);
+            //var send = country.Cities.ToList();
+            ////CountriesViewModel countries = _countriesService.FindById(id);
+            //if (send == null) { RedirectToAction(nameof(Index)); }
+            //return View(send);
+
+
+            Country country = _countriesService.FindById(id);
+            if (country == null) { RedirectToAction(nameof(Index)); }
+            return View(country);
         }
 
         public ActionResult Edit(int id)    // Not implemented

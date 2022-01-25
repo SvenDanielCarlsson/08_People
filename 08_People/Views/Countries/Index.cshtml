@@ -1,0 +1,58 @@
+﻿@model _08_People.Models.ViewModels.CountriesViewModel
+
+@{
+    ViewData["Title"] = "Countries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Countries.Count < 1)
+{
+    <br />
+    <p>There are no countries in the list at the moment</p>
+}
+else
+{
+    <h3>Countries</h3>
+    <hr />
+
+    <div class="container row">
+        <div class="col row">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Create">Add Country</a>
+        </div>
+
+        <div class="align-items-end">
+            @using (Html.BeginForm("Index", "Countries", FormMethod.Get))
+            {
+                @Html.TextBox("search")
+                <input type="submit" value="Search" />
+            }
+        </div>
+    </div>
+
+
+    <br />
+    <div class="container">
+        <div class="row table-primary" style="border-bottom-style: ridge; font-weight:bolder; font-size:larger">
+            <div class="col">Country</div>
+            <div class="col">Num. Of Cities</div>
+            <div class="col">Num. Of People</div>
+            <div class="col">Details</div>
+        </div>
+
+        @foreach (var Country in Model.Countries)
+        {
+            <div class="divChecker divHover tableBgColor row">
+
+                <div class="col align-self-center">@Country.Cities.</div>
+                <div class="col align-self-center">555</div>
+                <div class="col align-self-center">555</div>
+                <div class="col align-self-center">
+                    <a asp-controller="Countries" asp-action="Details" asp-route-id="@Country.Id">
+                        <input type="submit" class="btn btn-info" value="Details" />
+                    </a>
+                </div>
+
+            </div>
+        }
+    </div>
+}

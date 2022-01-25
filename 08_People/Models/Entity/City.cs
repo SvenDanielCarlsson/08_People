@@ -13,15 +13,27 @@ namespace _08_People.Models.Entity
         public int Id { get; set; }
 
         public string CityName { get; set; }
-        
+
+
+
+
+        //Navigation property
+
         [ForeignKey("Country")]
         public int CountryId { get; set; }
         
-        public Country Country { get; set; }        //Navigational property bind
+        public Country Country { get; set; }
 
-        public List<Person> People { get; set; }    //Navigational property
+
+
+
+        public List<Person> People { get; set; }
         
         public City() { }
+        public City(string cityName)
+        {
+            CityName = cityName;
+        }
 
 
     }
