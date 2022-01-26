@@ -1,35 +1,36 @@
 ﻿@model _08_People.Models.Entity.Country
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Country Details";
 }
 
-<div>
-    <h3>@Model.CountryName</h3>
+<h3>Cities in @Model.CountryName</h3>
+<hr />
+
+<div class="container row">
+    <div class="col row">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Create">Add City</a>
+    </div>
+
+    <div class="align-items-end">
+        @using (Html.BeginForm("Index", "Cities", FormMethod.Get))
+        {
+            @Html.TextBox("search")
+            <input type="submit" value="Search" />
+        }
+    </div>
 </div>
 
 
 
-@*Model.Cities.ToList().Count*@
-@if (2 < 1)
+@if (Model.Cities.Count() < 1)
 {
     <br />
-    <p>There are no cities in the list at the moment</p>
+    <p>There are no cities in this country at the moment</p>
 }
 else
 {
-    @*<div class="row">
-        <h3>Cities</h3>
-        <hr />
-        <div class="align-items-end">
-            @using (Html.BeginForm("Index", "Cities", FormMethod.Get))
-            {
-                @Html.TextBox("search")
-                <input type="submit" value="Search" />
-            }
-        </div>
-    </div>*@
 
-    <a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Create">Add City</a>
+
 
     <br />
     <div class="container">
@@ -40,15 +41,15 @@ else
             <div class="col">Details</div>
         </div>
 
-        @foreach (var City in Model.Cities)
+        @foreach (City city in Model.Cities)
         {
             <div class="divChecker divHover tableBgColor row">
 
-                <div class="col align-self-center">@City.CityName</div>
-                <div class="col align-self-center">555</div>
-                <div class="col align-self-center">@City.CountryId</div>
+                <div class="col align-self-center">@city.CityName</div>
+                <div class="col align-self-center">@city.People.Count()</div>
+                <div class="col align-self-center">@city.Country.CountryName</div>
                 <div class="col align-self-center">
-                    <a asp-controller="Country" asp-action="Details" asp-route-id="@City.Id">
+                    <a asp-controller="Country" asp-action="Details" asp-route-id="@city.Id">
                         <input type="submit" class="btn btn-info" value="Details" />
                     </a>
                 </div>

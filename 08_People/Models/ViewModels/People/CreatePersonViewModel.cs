@@ -28,19 +28,29 @@ namespace _08_People.Models.ViewModels
 
 
         //[Required]
-        //[StringLength(50, MinimumLength = 2)]
         //[DisplayName("Country")]
         //public Country Country { get; set; }        // Redundant??
 
-        //[Required]
-        //[StringLength(50, MinimumLength = 2)]
-        //[DisplayName("City")]
+
 
         [Required]
         [DisplayName("City")]
         public int CityId { get; set; }
-        //public City city { get; set; }
         public List<City> CityList { get; set; }
+
+
+
+        public CreatePersonViewModel()
+        {
+            this.CityList = new List<City>();
+        }
+        public CreatePersonViewModel(string firstName, string lastName, int phoneNumber, int cityId) : this()
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
+            CityId = cityId;
+        }
 
     }
 }

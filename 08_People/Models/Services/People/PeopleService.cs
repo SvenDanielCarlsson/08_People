@@ -11,10 +11,12 @@ namespace _08_People.Models.Services
     public class PeopleService : IPeopleService
     {
         private readonly IPeopleRepo _peopleRepo;
+        private readonly ICitiesRepo _citiesRepo;
 
-        public PeopleService(IPeopleRepo peopleRepo)
+        public PeopleService(IPeopleRepo peopleRepo, ICitiesRepo citiesRepo)
         {
             _peopleRepo = peopleRepo;
+            _citiesRepo = citiesRepo;
         }
 
 
@@ -34,7 +36,9 @@ namespace _08_People.Models.Services
                     CityId = newPerson.CityId
                 };
 
-                return _peopleRepo.Create(person);
+                person = _peopleRepo.Create(person);
+                return person;
+                //return _peopleRepo.Create(person);
             }
         }
 

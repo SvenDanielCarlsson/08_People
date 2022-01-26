@@ -25,14 +25,13 @@ namespace _08_People.Models.Entity
         [DataType(DataType.PhoneNumber)]
         public int PhoneNumber { get; set; }
 
-        //[Required]
-        //[StringLength(50, MinimumLength = 2)]
-        //public string InCity { get; set; }    // This will be replaced
 
         //public Country Country { get; set; }  //Is this neccessary?
 
+
+        //  Navigational Properties
         [ForeignKey("City")]
-        public int CityId { get; set; }         // Just in case
-        public City City { get; set; }          // By this
+        public int CityId { get; set; }
+        public City City { get; set; }
     }
 }

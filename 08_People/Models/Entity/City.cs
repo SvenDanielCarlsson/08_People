@@ -17,19 +17,19 @@ namespace _08_People.Models.Entity
 
 
 
-        //Navigation property
-
+        //  Navigational properties
         [ForeignKey("Country")]
         public int CountryId { get; set; }
-        
+
         public Country Country { get; set; }
 
-
-
-
         public List<Person> People { get; set; }
+
         
-        public City() { }
+        public City()
+        {
+            this.People = new List<Person>();
+        }
         public City(string cityName)
         {
             CityName = cityName;

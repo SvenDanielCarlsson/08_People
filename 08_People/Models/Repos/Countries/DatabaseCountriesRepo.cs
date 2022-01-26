@@ -1,5 +1,6 @@
 ﻿using _08_People.Data;
 using _08_People.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace _08_People.Models.Repos
 
         public Country Read(int id)
         {
-            return _peopleDbContext.Countries.SingleOrDefault(c => c.Id == id);
+            return _peopleDbContext.Countries.Include( c => c.Cities ).ThenInclude(p => p.People).SingleOrDefault(c => c.Id == id);
         }
 
         public bool Update(Country country)

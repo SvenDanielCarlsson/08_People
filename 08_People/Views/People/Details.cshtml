@@ -4,6 +4,7 @@
 }
 
 <h3>Details</h3>
+<hr />
 
 <br />
 <dl>
@@ -19,7 +20,10 @@
     <dt>Phonenumber</dt>
     <dd>@Model.PhoneNumber</dd>
 
-    <dt>Living in</dt>
+    <dt>Country</dt>
+    <dd>@Model.City.Country.CountryName</dd>
+
+    <dt>City</dt>
     <dd>@Model.City.CityName</dd>
 </dl>
 <form method="post" asp-action="Delete" asp-route-id="@Model.Id"}>

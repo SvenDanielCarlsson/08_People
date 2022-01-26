@@ -13,12 +13,16 @@ namespace _08_People.Models.Entity
 
         public string CountryName { get; set; }
 
-        public List<City> Cities { get; set; }      //Navigational Property
+
+        //  Navigational Property
+        public List<City> Cities { get; set; }
 
 
-
-        public Country() { }
-        public Country(string countryName)
+        public Country()
+        {
+            this.Cities = new List<City>();
+        }
+        public Country(string countryName) : this()
         {
             CountryName = countryName;
         }

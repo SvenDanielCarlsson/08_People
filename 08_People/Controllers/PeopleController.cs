@@ -34,9 +34,9 @@ namespace _08_People.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            CreatePersonViewModel createPerson = new CreatePersonViewModel();
-            createPerson.CityList = _citiesService.All();
-            return View();
+            CreatePersonViewModel person = new CreatePersonViewModel();
+            person.CityList = _citiesService.All();
+            return View(person);
             //return View(createPerson);
         }
 
@@ -46,10 +46,23 @@ namespace _08_People.Controllers
         {
             if (ModelState.IsValid)
             {
-                _peopleService.Add(person);
+                //_peopleService.Add(person);
+
+                try
+                {
+                    _peopleService.Add(person);
+                }
+                catch (ArgumentException exception)
+                {
+                    ModelState.AddModelError("Person and City", exception.Message);
+                    person.CityList = _citiesService.All();
+
+                    return View(person);
+                }
+
                 return RedirectToAction(nameof(Index));     // Redirection to "Details" would be preferred
-                //if throw new argumentexception needs to be added
             }
+
             person.CityList = _citiesService.All();
             return RedirectToAction(nameof(Create));
         }
