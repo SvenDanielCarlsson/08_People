@@ -22,7 +22,6 @@ namespace _08_People.Models.Repos
 
         public Person Create(Person person)
         {
-            //_peopleDbContext.People.Include(c => c.City);
             _peopleDbContext.People.Add(person);
             _peopleDbContext.SaveChanges();
             return person;

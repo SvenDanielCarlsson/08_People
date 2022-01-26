@@ -27,7 +27,8 @@ namespace _08_People.Models.Services
             {
                 City city = new City()
                 {
-                    CityName = newCity.CityName
+                    CityName = newCity.CityName,
+                    CountryId = newCity.CountryId
                 };
 
                 return _citiesRepo.Create(city);
@@ -72,6 +73,7 @@ namespace _08_People.Models.Services
             if(city != null)
             {
                 city.CityName = eCity.CityName;
+                city.CountryId = eCity.CountryId;
                 return _citiesRepo.Update(city);
             }
             return false;

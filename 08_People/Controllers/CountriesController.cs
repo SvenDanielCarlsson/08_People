@@ -49,13 +49,6 @@ namespace _08_People.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            //Country country = _countriesService.FindById(id);
-            //var send = country.Cities.ToList();
-            ////CountriesViewModel countries = _countriesService.FindById(id);
-            //if (send == null) { RedirectToAction(nameof(Index)); }
-            //return View(send);
-
-
             Country country = _countriesService.FindById(id);
             if (country == null) { RedirectToAction(nameof(Index)); }
             return View(country);

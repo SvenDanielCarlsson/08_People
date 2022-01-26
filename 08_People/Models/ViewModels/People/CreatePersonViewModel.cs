@@ -40,17 +40,17 @@ namespace _08_People.Models.ViewModels
 
 
 
-        public CreatePersonViewModel()
-        {
-            this.CityList = new List<City>();
-        }
-        public CreatePersonViewModel(string firstName, string lastName, int phoneNumber, int cityId) : this()
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            PhoneNumber = phoneNumber;
-            CityId = cityId;
-        }
+        //public CreatePersonViewModel()
+        //{
+        //    this.CityList = new List<City>();
+        //}
+        //public CreatePersonViewModel(string firstName, string lastName, int phoneNumber, int cityId) : this()
+        //{
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    PhoneNumber = phoneNumber;
+        //    CityId = cityId;
+        //}
 
     }
 }

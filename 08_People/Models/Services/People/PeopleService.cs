@@ -88,7 +88,6 @@ namespace _08_People.Models.Services
                 person.LastName = ePerson.LastName;
                 person.PhoneNumber = ePerson.PhoneNumber;
                 person.CityId = ePerson.CityId;
-                //person.City = ePerson.City;               // wont work? or safer?
 
                 return _peopleRepo.Update(person);
             }

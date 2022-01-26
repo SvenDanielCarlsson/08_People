@@ -1,5 +1,6 @@
 ﻿using _08_People.Data;
 using _08_People.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,6 @@ namespace _08_People.Models.Repos
             _peopleDbContext.Cities.Add(city);
             _peopleDbContext.SaveChanges();
             return city;
-            //throw new NotImplementedException();
         }
 
         public List<City> Read()
@@ -34,7 +34,7 @@ namespace _08_People.Models.Repos
 
         public City Read(int id)
         {
-            return _peopleDbContext.Cities.SingleOrDefault(c => c.Id == id);
+            return _peopleDbContext.Cities.Include(p => p.People).SingleOrDefault(c => c.Id == id);
         }
 
         public bool Update(City city)

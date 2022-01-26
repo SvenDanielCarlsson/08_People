@@ -37,7 +37,6 @@ namespace _08_People.Controllers
             CreatePersonViewModel person = new CreatePersonViewModel();
             person.CityList = _citiesService.All();
             return View(person);
-            //return View(createPerson);
         }
 
         [HttpPost]
@@ -46,8 +45,6 @@ namespace _08_People.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_peopleService.Add(person);
-
                 try
                 {
                     _peopleService.Add(person);
@@ -59,7 +56,6 @@ namespace _08_People.Controllers
 
                     return View(person);
                 }
-
                 return RedirectToAction(nameof(Index));     // Redirection to "Details" would be preferred
             }
 
